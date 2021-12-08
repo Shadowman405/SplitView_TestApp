@@ -8,9 +8,13 @@
 import UIKit
 
 class MasterTableViewController: UITableViewController {
+    
+    var food = FoodModel.fetchFood()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
 
     }
 
@@ -22,14 +26,14 @@ class MasterTableViewController: UITableViewController {
 //    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return food.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let currentfood = food[indexPath.row]
+        cell.textLabel?.text = currentfood.foodName
+        cell.imageView?.image = currentfood.mainImage
         return cell
     }
 
