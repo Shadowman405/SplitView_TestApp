@@ -14,16 +14,18 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var foodCostLbl: UILabel!
     @IBOutlet weak var foodDescriptionField: UITextView!
     
+    let masterTVC = MasterTableViewController()
+    
 
     var foodObject : FoodModel? {
         didSet {
-            
+            set()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        masterTVC.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -35,4 +37,11 @@ class DetailViewController: UIViewController {
         foodDescriptionField.text = foodObject?.smallDescription
     }
 
+}
+
+
+extension DetailViewController: FoodSelectedDelegate {
+    func foodSelected(food: FoodModel) {
+        self.foodObject = food
+    }
 }
