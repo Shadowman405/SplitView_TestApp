@@ -18,17 +18,8 @@ class MasterTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
-
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return food.count
@@ -45,10 +36,9 @@ class MasterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentFood = food[indexPath.row]
         delegate?.foodSelected(food: currentFood)
+        print("1")
         
-        if let detailVC = delegate as? DetailViewController {
-            splitViewController?.showDetailViewController(detailVC, sender: nil)
-        }
+        splitViewController?.showDetailViewController(DetailViewController(), sender: nil)
     }
 
 }
